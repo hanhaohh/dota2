@@ -10,8 +10,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+import sys
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+print BASE_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -36,8 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	
+	'app1',
+    'app2',
 )
+sys.path.insert(0, os.path.join(BASE_DIR, 'dota2/apps'))
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,4 +90,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+STATIC_ROOT = '%s/static-collected' % BASE_DIR
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+MEDIA_ROOT = '%s/media' % BASE_DIR
+
+# The URL that handles the media, static, etc.
 STATIC_URL = '/static/'
+MEDIA_URL = STATIC_URL + 'media/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    '%s/static-assets' % BASE_DIR,
+)
