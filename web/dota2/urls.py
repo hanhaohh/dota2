@@ -11,6 +11,8 @@ import dota2.apps.app1.url
 admin.autodiscover()
 
 urlpatterns = patterns('',
+     url(r'', include('dota2.apps.login.urls')),
+     #url(r'', include('social_auth.urls')),
      url(r'^admin/', include(admin.site.urls)),
-     url(r'^app1/', include(dota2.apps.app1.url)),
+     url(r'^app1/', include('dota2.apps.app1.url')),
 )
